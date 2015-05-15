@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统显示生成的密码
- */
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -36,6 +36,6 @@ echo "】<br/>";
 ?>
 <br/>
 <a href="admin.html">返回</a>
-<small>Power By <a href="https://echoiot.com">Echo</a>,<a href="https://tec.hxlxz.com">hxl</a></small>
+<small>Power By <a href="https://echoiot.com">易控实验室</a>,<a href="https://tec.hxlxz.com">何相龙</a>.<a href="https://github.com/qwgg9654/chaqin">SourceCode</a></small>
 </body>
 </html>

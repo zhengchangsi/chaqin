@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,14 +17,14 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统数据录入
- */
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>提交中</title>
 
-    //获取URL中的参数（用于记住密码）
+    <!--获取URL中的参数（用于记住密码）-->
     <script type="text/javascript">
     function $G(){
         var Url=window.location.href;//如果想获取框架顶部的url可以用 top.window.location.href
@@ -51,7 +51,7 @@
     }
     </script>
 
-//获取pass参数（即上次使用的密码）
+<!--获取pass参数（即上次使用的密码）-->
 <script type="text/javascript"> var pass=$G("pass"); </script>
 </head>
 
@@ -68,18 +68,18 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_NOTICE);
 //导入获取ip函数
 include 'getip.php';
 //连接数据库
-include 'database.php';
+require 'database.php';
 //判断当前是否正在进行查寝（data数据库是否存在），否；提示，转到管理界面
 $result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
-	if(mysql_fetch_array($result) == "")
-    {
-        mysql_close($con);
-		exit("
-		 <script language=javascript>
-		 alert('本次查寝未开始，请联系管理员');
-		 window.location.href='admin.html';
-		 </script> ");
-    }
+if(mysql_fetch_array($result) == "")
+{
+    mysql_close($con);
+    exit("
+     <script language=javascript>
+     alert('本次查寝未开始，请联系管理员');
+     window.location.href='admin.html';
+     </script> ");
+}
 //验证密码，错误：提示，返回
 $result = mysql_query("select pass from pass where pass = '$_REQUEST[pass]' limit 1");
 if(mysql_fetch_array($result) == "")
@@ -153,6 +153,6 @@ else
 	 </script> ");
 }
 ?>
-<small>Power By <a href="https://echoiot.com">Echo</a>,<a href="https://tec.hxlxz.com">hxl</a></small>
+<small>Power By <a href="https://echoiot.com">易控实验室</a>,<a href="https://tec.hxlxz.com">何相龙</a>.<a href="https://github.com/qwgg9654/chaqin">SourceCode</a></small>
 </body>
 </html>

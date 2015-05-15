@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统配置文件
- */
+-->
 <?php
 if (!defined('CHAQIN_CONFIG'))
 {
@@ -28,7 +28,7 @@ if (!defined('CHAQIN_CONFIG'))
   define("DBPasswordd", "Your DataBase UserPssword");
   define("AdminPassword1", "Set Your AdminPassword 1");
   define("AdminPassword2", "Set Your AdminPassword 2");
-  define("AdminPass1", "Set Your AdminDataPassword 1");
-  define("AdminPass2", "Set Your AdminDataPassword 2");
+  $AdminPass1="Set Your AdminDataPassword 1";
+  $AdminPass2="Set Your AdminDataPassword 2";
 }
 ?>

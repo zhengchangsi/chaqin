@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统管理-增加用户
- */
+-->
 <?php
 //生成密码函数
 function generate_password($length)
@@ -33,12 +33,27 @@ function generate_password($length)
     }
     return $password;
 }
+//判断pass数据表是否存在,不存在：新建pass数据表
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='pass' ;");
+if(mysql_fetch_array($result) == "")
+{
+    $sql = "CREATE TABLE pass
+    (
+    id int auto_increment primary key,
+    pass text,
+    username text
+    )";
+    mysql_query($sql, $con);
+}
+mysql_query($sql, $con);
+//获取传入的用户名
+$username = $_REQUEST[inf];
 //判断输入的用户名是否已经存在，是：提示，返回
-$result = mysql_query("select * from pass where username = '$_REQUEST[inf]' limit 1");
+$result = mysql_query("select * from pass where username = '$username' limit 1");
 if(mysql_fetch_array($result) != "")
 {
     mysql_close($con);
-     exit( "
+    exit( "
      <script language=javascript>
      alert('用户名重复。');
      window.location.href='admin.html';
@@ -50,8 +65,6 @@ do
         $passwords = generate_password(8);
         $result = mysql_query("select * from pass where pass = '$passwords' limit 1");
     }while(mysql_fetch_array($result)!="");
-//获取传入的用户名
-$username = $_REQUEST[inf];
 //添加用户
 $sql = "INSERT INTO pass (pass, username) VALUES('$passwords','$username')";
 mysql_query($sql,$con);
@@ -60,6 +73,6 @@ mysql_close($con);
 exit( "
      <script language=javascript>
      alert('密码生成成功，请保存。');
-     window.location.href='show.php?pass=$passwords&user=$username';
+     window.location.href='showpass.php?pass=$passwords&user=$username';
      </script> ");
 ?>

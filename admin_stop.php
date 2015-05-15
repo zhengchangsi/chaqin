@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,10 +17,10 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统管理-查寝结束
- */
+-->
 <?php
 //判断当前是否在进行查寝（data数据表是否存在）
-$result = mysql_query("select * from data limit 1");
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='data' ;");
 if(mysql_fetch_array($result) == "")
 {
     mysql_close($con);
@@ -58,7 +58,7 @@ mysql_query($sql, $con);
 mysql_query("CREATE TABLE lastdata SELECT * FROM data");
 mysql_query($sql, $con);
 //将这次的查寝数据（data表）存档到用户自定义的数据表（推荐以日期作为表名）
-mysql_query("RENAME TABLE '" + DBName + "'.'data'  TO '" + DBName + "'.`db$_REQUEST[inf]` ");
+mysql_query("RENAME TABLE data TO db$_REQUEST[inf]");
 mysql_query($sql, $con);
 //搞定：提示，返回主界面
 mysql_close($con);

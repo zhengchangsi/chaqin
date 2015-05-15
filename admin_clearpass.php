@@ -1,4 +1,4 @@
-/**
+<!--
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -17,15 +17,32 @@
  * @license    http://www.gnu.org/licenses/     GPL v3
  * @version    1.0
  * @discribe   查寝系统管理-清空密码
- */
+-->
 <?php
 //清空密码数据库
-$sql="TRUNCATE TABLE pass";
-mysql_query($sql,$con);
-$sql="INSERT INTO pass (pass, username) VALUES(AdminPass1,' ')";
-mysql_query($sql,$con);
-$sql="INSERT INTO pass (pass, username) VALUES(AdminPass2,' ')";
-mysql_query($sql,$con);
+//判断pass数据表是否存在
+$result = mysql_query("select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME='pass' ;");
+//存在：清空pass表
+if(mysql_fetch_array($result) != "")
+{
+    $sql="TRUNCATE TABLE pass";
+    mysql_query($sql, $con);
+}
+//不存在：新建pass数据表
+else 
+{   
+    $sql = "CREATE TABLE pass
+    (
+    id int auto_increment primary key,
+    pass text,
+    username text
+    )";
+    mysql_query($sql, $con);
+}
+$sql = "INSERT INTO pass (pass, username) VALUES('$AdminPass1',' ')";
+mysql_query($sql, $con);
+$sql = "INSERT INTO pass (pass, username) VALUES('$AdminPass2',' ')";
+mysql_query($sql, $con);
 
 //搞定:提示，返回
 mysql_close($con);
